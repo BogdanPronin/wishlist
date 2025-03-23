@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="3" author="bogdan">
+        <createTable tableName="wishes">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="priority" type="INT"/>
+            <column name="due_date" type="DATE"/>
+            <column name="wish_list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reserved_by_user_id" type="UUID"/>
+            <column name="reserved_at" type="TIMESTAMP"/>
+            <column name="created_at" type="TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="wishes"
+                                 baseColumnNames="wish_list_id"
+                                 referencedTableName="wish_lists"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_wish_wishlist"/>
+
+        <addForeignKeyConstraint baseTableName="wishes"
+                                 baseColumnNames="reserved_by_user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_wish_reserved_by_user"/>
+    </changeSet>
+</databaseChangeLog>
