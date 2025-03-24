@@ -25,9 +25,9 @@ class WishListController(
     fun createWishList(
         @RequestBody dto: WishListCreateDto,
         @AuthenticationPrincipal user: UserPrincipal
-    ): ResponseEntity<WishListDto> {
+    ): WishListDto {
         val saved = wishListService.save(EntityMapper.dtoToWishList(dto, user.getUser()))
-        return ResponseEntity.ok(EntityMapper.toWishListDto(saved))
+        return EntityMapper.toWishListDto(saved)
     }
 
     @GetMapping

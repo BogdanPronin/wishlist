@@ -1,5 +1,6 @@
 package com.github.bogdanpronin.wishlist.core.model
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.persistence.*
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -26,12 +27,18 @@ data class Wish(
 
     @ManyToOne
     @JoinColumn(name = "wish_list_id")
+    @JsonIgnoreProperties("user", "wishes")
     val wishList: WishList,
 
     @ManyToOne
     @JoinColumn(name = "reserved_by_user_id")
+    @JsonIgnoreProperties("reservedWishes", "wishLists")
     val reservedBy: User? = null,
 
     @Column(name = "reserved_at")
     val reservedAt: LocalDateTime? = null
-)
+){
+    override fun toString(): String {
+        return "Wish(id=$id, title=$title, dueDate=$dueDate, createdAt=$createdAt, reservedAt=$reservedAt)"
+    }
+}

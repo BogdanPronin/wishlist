@@ -1,5 +1,6 @@
 package com.github.bogdanpronin.wishlist.core.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import java.time.LocalDateTime
 import java.util.*
@@ -23,8 +24,12 @@ data class User(
     val createdAt: LocalDateTime = LocalDateTime.now(),
 
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JsonIgnore
     val wishLists: List<WishList> = emptyList(),
 
     @OneToMany(mappedBy = "reservedBy", fetch = FetchType.LAZY)
     val reservedWishes: List<Wish> = emptyList()
-)
+) {
+    override fun toString(): String =
+        "User(id=$id, email=$email, fullName=$fullName)"
+}
