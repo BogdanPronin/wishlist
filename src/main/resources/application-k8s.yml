@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/wishlist_db
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.xml
+
+server:
+  port: 8080
+
+jwt:
+  secret: x5Xq9PAiHuPFFJ/pG+H45JNQ/yPvNM8jXH3XNhWMp7k=
+  refreshSecret: tFlD6u6wpYbtI0KWpVqLxX3CC4t2+YELUSxWYSdtSxk=
+
+logging:
+  file:
+    name: /logs/wishlist.log
+  level:
+    root: INFO
+    com.github.bogdanpronin: DEBUG
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always

@@ -1,0 +1,11 @@
+resources:
+  - app-deployment.yaml
+  - app-service.yaml
+  - db-deployment.yaml
+  - db-service.yaml
+  - db-pv.yaml
+
+images:
+  - name: wishlist-app
+    newName: wishlist-app
+    newTag: latest
