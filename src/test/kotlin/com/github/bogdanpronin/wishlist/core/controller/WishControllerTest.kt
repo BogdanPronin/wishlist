@@ -2,6 +2,7 @@ package com.github.bogdanpronin.wishlist.core.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.bogdanpronin.wishlist.auth.dto.AuthResponse
+import com.github.bogdanpronin.wishlist.config.IntegrationTest
 import com.github.bogdanpronin.wishlist.core.dto.WishCreateDto
 import com.github.bogdanpronin.wishlist.core.dto.WishUpdateDto
 import com.github.bogdanpronin.wishlist.core.model.User
@@ -32,7 +33,7 @@ class WishControllerTest @Autowired constructor(
     val wishListRepository: WishListRepository,
     val wishRepository: WishRepository,
     val passwordEncoder: PasswordEncoder
-) {
+) : IntegrationTest() {
 
     lateinit var user: User
     lateinit var token: String

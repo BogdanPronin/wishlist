@@ -38,6 +38,8 @@ dependencies {
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("io.micrometer:micrometer-registry-prometheus")
+	testImplementation("org.testcontainers:junit-jupiter:1.19.3")
+	testImplementation("org.testcontainers:postgresql:1.19.3")
 
 }
 
