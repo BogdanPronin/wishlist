@@ -2,6 +2,7 @@ package com.github.bogdanpronin.wishlist.core.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.bogdanpronin.wishlist.auth.dto.AuthResponse
+import com.github.bogdanpronin.wishlist.config.IntegrationTest
 import com.github.bogdanpronin.wishlist.core.dto.WishListCreateDto
 import com.github.bogdanpronin.wishlist.core.model.User
 import com.github.bogdanpronin.wishlist.core.model.WishList
@@ -26,7 +27,7 @@ class WishListControllerTest @Autowired constructor(
     val userRepository: UserRepository,
     val wishListRepository: WishListRepository,
     val passwordEncoder: PasswordEncoder
-) {
+) : IntegrationTest(){
 
     lateinit var token: String
     lateinit var user: User
